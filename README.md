@@ -19,6 +19,9 @@ pip install confens/
 ## Examples
 
 ```python
+import numpy as np
+import conformal_ensembles as ce
+
 # significance level
 alpha = 0.1
 
