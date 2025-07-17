@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "conformal_ensembles"
+version = "0.0.1"
+authors = [
+  { name="Trevor Harris", email="trevor.a.harris@uconn.edu" },
+]
+description = "Conformal Ensembles for Climate UQ"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/trevor-harris/conformal_ensembles"
+Issues = "https://github.com/trevor-harris/conformal_ensembles/issues"
