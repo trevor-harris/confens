@@ -1,12 +1,10 @@
-# Conformal Ensembles
-
-Conformal Ensembles for Climate UQ.
+# Conformal Ensembles for Climate UQ
 
 [Quantifying uncertainty in climate projections with conformal ensembles](https://arxiv.org/abs/2408.06642)
 
 ## Overview
 
-`conformal_ensembles` implements the conformal ensembling approach (CE) [1] in JAX along with the baseline model analysis functions [2]. 
+`confensembles` implements the conformal ensembling approach (CE) [1] in JAX along with the baseline model analysis functions [2]. 
 
 Conformal ensembling (CE) uses conformal prediction sets and observational data to constrain projection uncertainty in General Circulation Model (GCM) ensembles. This approach works by first training a model analysis function, such as a Convolutional Neural Network, to use the GCM ensemble to ``predict'' observational data. Then, on held out data we compute the prediction residuals. These residuals are treated as functional data so that we can employ functional data depth techniques to define exact prediction sets in function space with statistical guarantees. 
 
