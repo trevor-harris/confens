@@ -1,4 +1,4 @@
-# ConfEns
+# Conformal Ensembles
 
 Conformal Ensembles for Climate UQ.
 
@@ -6,7 +6,7 @@ Conformal Ensembles for Climate UQ.
 
 ## Overview
 
-`ConfEns` implements the conformal ensembling approach (CE) [1] in JAX along with the baseline model analysis functions [2]. 
+`conformal_ensembles` implements the conformal ensembling approach (CE) [1] in JAX along with the baseline model analysis functions [2]. 
 
 Conformal ensembling (CE) uses conformal prediction sets and observational data to constrain projection uncertainty in General Circulation Model (GCM) ensembles. This approach works by first training a model analysis function, such as a Convolutional Neural Network, to use the GCM ensemble to ``predict'' observational data. Then, on held out data we compute the prediction residuals. These residuals are treated as functional data so that we can employ functional data depth techniques to define exact prediction sets in function space with statistical guarantees. 
 
@@ -19,20 +19,29 @@ pip install confens/
 ## Examples
 
 ```python
-import torch
-import torch_harmonics as th
-from torch_harmonics.random_fields import GaussianRandomFieldS2
-from scwd.metrics import scwd
+# significance level
+alpha = 0.1
 
-# generate two GPs on the sphere (nlat = 90, nlon = 180)
-GRF_x = GaussianRandomFieldS2(nlat = 90)
-GRF_y = GaussianRandomFieldS2(nlat = 90)
+# calibration data
+np.random.seed(1023)
+y_cal = np.random.randn(500, 30, 30)
+yhat_cal = np.random.randn(500, 30, 30)
 
-# Sample 100 fields for X, 200 for Y
-x = GRF_x(100)
-y = GRF_y(200)
+# test data
+y_test = np.random.randn(500, 30, 30)
+yhat_test = np.random.randn(500, 30, 30)
 
-scwd_map, scwd_val = scwd(x, y)
+# compute residuals
+res_val = y_cal - yhat_cal
+res_test = y_test - yhat_test
+
+# cutoff value
+q_val = ce.conf_quantile(res_val, alpha)
+depth_test = ce.tukey_depth(res_val, res_test)
+np.mean(depth_test >= q_val) # 0.90200
+
+# full ensemble
+ens_val = ce.conf_ensemble(res_val, alpha)
 ```
 
 ## Notes

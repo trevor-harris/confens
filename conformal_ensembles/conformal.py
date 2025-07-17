@@ -2,7 +2,7 @@ import jax
 import jax.numpy as jnp
 from jax import vmap, grad, jit, random
 
-from depths import *
+from .depths import *
 
 # Estimates the cutoff value conformal inference on spatiotemporal processes. Assumes tukey depth.
 def conf_quantile(res_val, alpha):
@@ -33,7 +33,7 @@ def conf_quantile(res_val, alpha):
     depth_val = tukey_depth(res_val, res_val)
 
     # smoothed quantile estimator
-    q_val = jnp.sort(depth_val)[nval-int(np.ceil((1 - alpha) * (nval + 1)))]
+    q_val = jnp.sort(depth_val)[nval-int(jnp.ceil((1 - alpha) * (nval + 1)))]
 
     return q_val
 
@@ -66,6 +66,6 @@ def conf_ensemble(res_val, alpha):
     depth_val = tukey_depth(res_val, res_val)
     
     # smoothed quantile estimator
-    q_val = jnp.sort(depth_val)[nval-int(np.ceil((1 - alpha) * (nval + 1)))]
+    q_val = jnp.sort(depth_val)[nval-int(jnp.ceil((1 - alpha) * (nval + 1)))]
 
     return res_val[depth_val >= q_val]
