@@ -1,6 +1,6 @@
 # Conformal Ensembles for Constrained Climate UQ
 
-[Quantifying uncertainty in climate projections with conformal ensembles](https://arxiv.org/abs/2408.06642)
+Paper: [Quantifying uncertainty in climate projections with conformal ensembles](https://arxiv.org/abs/2408.06642)
 
 ## Overview
 
