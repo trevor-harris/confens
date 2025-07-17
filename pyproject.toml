@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "confensembles"
+name = "confensemble"
 version = "0.0.1"
 authors = [
   { name="Trevor Harris", email="trevor.a.harris@uconn.edu" },
@@ -19,3 +19,6 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/trevor-harris/confensembles"
 Issues = "https://github.com/trevor-harris/confensembles/issues"
+
+[tool.setuptools]
+packages = ["confensemble"]
